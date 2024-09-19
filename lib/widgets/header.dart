@@ -59,9 +59,14 @@ class _HeaderState extends State<Header> {
               const SizedBox(height: 16),
               Row(
                 children: [
-                  Image.asset(
-                    'assets/images/sis_logo.jpg',
-                    height: 80, // Adjust the size as needed
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/');
+                    },
+                    child: Image.asset(
+                      'assets/images/sis_logo.jpg',
+                      height: 80, // Adjust the size as needed
+                    ),
                   ),
                   const SizedBox(width: 16),
                   // Navigation bar
@@ -77,7 +82,7 @@ class _HeaderState extends State<Header> {
                         SizedBox(width: 32),
                         NavItem(title: 'News', route: AppRoutes.news),
                         SizedBox(width: 32),
-                        NavItem(title: 'Abount Us', route: AppRoutes.aboutUs),
+                        NavItem(title: 'About Us', route: AppRoutes.aboutUs),
                         SizedBox(width: 32),
                         NavItem(title: 'Contact', route: AppRoutes.contact),
                       ],

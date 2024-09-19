@@ -20,3 +20,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/sis_logo.jpg
+    - assets/images/sis_map.jpg
