@@ -1,8 +1,7 @@
 # sis_website
 
 A new Flutter project.
-
-
+```
 lib/
 │
 ├── main.dart                # Main entry point of the app
@@ -17,3 +16,17 @@ lib/
 │   └── user_model.dart       # Example of a model file
 └── utils/                   # (Optional) Utility classes or helper functions
     └── constants.dart        # Example of constants file
+```
+
+run backend
+
+```code
+cd backend
+go run main.go
+```
+
+run website
+
+```code
+flutter run
+```
