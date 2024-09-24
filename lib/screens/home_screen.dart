@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/product_view.dart';
 import '../widgets/header.dart';
 import '../widgets/footer.dart';
 
@@ -7,24 +8,20 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Column(
         children: [
           // Header (Includes navigation bar)
-          const Header(),
-
+          Header(),
           // Main content (Empty for now)
+
+          // Main content (ProductView)
           Expanded(
-            child: Container(
-              color: Colors.white,
-              child: const Center(
-                child: Text('Main Content Goes Here'),
-              ),
-            ),
+            child: ProductView(), // Include ProductView here
           ),
 
           // Footer
-          const Footer(),
+          Footer(),
         ],
       ),
     );

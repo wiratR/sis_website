@@ -9,6 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_image_slideshow: any
+  http: ^1.2.2
+  ini: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -21,3 +24,4 @@ flutter:
   assets:
     - assets/images/sis_logo.jpg
     - assets/images/sis_map.jpg
+    - assets/cfg/env.ini
