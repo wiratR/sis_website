@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/contact_view.dart';
 import '../widgets/product_view.dart';
 import '../widgets/header.dart';
 import '../widgets/footer.dart';
@@ -9,20 +10,36 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Column(
-        children: [
-          // Header (Includes navigation bar)
-          Header(),
-          // Main content (Empty for now)
+      body: SingleChildScrollView(
+        // Ensure this wraps the entire Column
+        child: Column(
+          children: [
+            // Header (Includes navigation bar)
+            Header(),
 
-          // Main content (ProductView)
-          Expanded(
-            child: ProductView(), // Include ProductView here
-          ),
+            // ProductView
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 20.0),
+              child: ProductView(), // Display ProductView
+            ),
 
-          // Footer
-          Footer(),
-        ],
+            // Divider (Optional, to separate sections visually)
+            Divider(
+              color: Colors.grey,
+              height: 1,
+              thickness: 1,
+            ),
+
+            // ContactView
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 20.0),
+              child: ContactView(), // Display ContactView
+            ),
+
+            // Footer
+            Footer(),
+          ],
+        ),
       ),
     );
   }
