@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'config_service.dart'; // Import your config service
 
-Future<String> getImage(int product) async {
+Future<String> getImageService(int index) async {
   // Ensure the config is loaded before using it
   if (ConfigService.baseUrl.isEmpty) {
     await ConfigService.loadConfig();
@@ -13,7 +13,7 @@ Future<String> getImage(int product) async {
   final Uri apiUrl = Uri.parse(ConfigService.baseUrl).replace(
     path: '/image',
     queryParameters: {
-      'product': product.toString(),
+      'service': index.toString(),
     },
   );
 
@@ -32,8 +32,8 @@ Future<String> getImage(int product) async {
       var data = json.decode(response.body);
       // debugPrint('Response data: $data'); // Log response for debugging
 
-      if (data.containsKey('image')) {
-        return data['image']; // Return the base64 image string
+      if (data.containsKey('image_data')) {
+        return data['image_data']; // Return the base64 image string
       } else {
         throw Exception('image key not found in response');
       }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/about_us_view.dart';
-import '../widgets/header.dart';
-import '../widgets/footer.dart';
+import '../widgets/component/header.dart';
+import '../widgets/component/footer.dart';
 
 class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({super.key});

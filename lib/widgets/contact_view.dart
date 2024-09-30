@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'inquiry_form.dart';
+import 'component/inquiry_form.dart';
 
 class ContactView extends StatelessWidget {
   const ContactView({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../widgets/nav_item.dart';
-import '../routes/app_routes.dart';
+import 'nav_item.dart';
+import '../../routes/app_routes.dart';
 
 class Header extends StatefulWidget {
   const Header({super.key});

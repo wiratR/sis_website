@@ -32,7 +32,7 @@ class _ProductViewState extends State<ProductView> {
     try {
       List<Image> images = [];
       for (int i = 1; i <= 3; i++) {
-        String imageBase64 = await getImage(i);
+        String imageBase64 = await getImageService(i);
         if (imageBase64.isNotEmpty) {
           images.add(Image.memory(base64Decode(imageBase64)));
         } else {
@@ -82,7 +82,7 @@ class _ProductViewState extends State<ProductView> {
           const SizedBox(height: 16),
 
           // Wrap PageView with a Container and ensure it has a height
-          Container(
+          SizedBox(
             height: 400, // Set a specific height
             child: Stack(
               alignment: Alignment.bottomCenter,

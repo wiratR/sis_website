@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/contact_view.dart';
-import '../widgets/header.dart';
-import '../widgets/footer.dart';
+import '../widgets/component/header.dart';
+import '../widgets/component/footer.dart';
 
 class ContactScreen extends StatelessWidget {
   const ContactScreen({super.key});

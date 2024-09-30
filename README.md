@@ -30,3 +30,7 @@ run website
 ```code
 flutter run
 ```
+
+```code
+http://58.9.110.21:50243/image?product=1
+```
