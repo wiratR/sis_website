@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/component/header.dart';
 import '../widgets/component/footer.dart';
+import '../widgets/solution_view.dart';
 
 class SolutionScreen extends StatelessWidget {
   const SolutionScreen({super.key});
@@ -13,13 +14,12 @@ class SolutionScreen extends StatelessWidget {
           // Header (Includes navigation bar)
           const Header(),
 
-          // Main content (Empty for now)
+          // Main content (ProductView for displaying images)
           Expanded(
             child: Container(
               color: Colors.white,
-              child: const Center(
-                child: Text('Solution Screen'),
-              ),
+              child:
+                  const SolutionView(), // Replace the placeholder text with ProductView
             ),
           ),
 

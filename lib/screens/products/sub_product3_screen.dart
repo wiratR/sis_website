@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import '../widgets/component/header.dart';
-import '../widgets/component/footer.dart';
-import '../widgets/product_view.dart'; // Import your ProductView
+import '../../widgets/component/header.dart';
+import '../../widgets/component/footer.dart';
 
-class ProductScreen extends StatelessWidget {
-  const ProductScreen({super.key});
+class SubProduct3Screen extends StatelessWidget {
+  const SubProduct3Screen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +13,13 @@ class ProductScreen extends StatelessWidget {
           // Header (Includes navigation bar)
           const Header(),
 
-          // Main content (ProductView for displaying images)
+          // Main content (Empty for now)
           Expanded(
             child: Container(
               color: Colors.white,
-              child:
-                  const ProductView(), // Replace the placeholder text with ProductView
+              child: const Center(
+                child: Text('Sub Product1 Screen'),
+              ),
             ),
           ),
 

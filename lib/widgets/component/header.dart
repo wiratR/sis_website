@@ -11,6 +11,14 @@ class Header extends StatefulWidget {
 }
 
 class _HeaderState extends State<Header> {
+  // State to control dropdown visibility
+  bool _isProductDropdownVisible = false;
+
+  // To track hover state for each subProduct
+  bool _isHoveredSubProduct1 = false;
+  bool _isHoveredSubProduct2 = false;
+  bool _isHoveredSubProduct3 = false;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -70,25 +78,171 @@ class _HeaderState extends State<Header> {
                   ),
                   const SizedBox(width: 16),
                   // Navigation bar
-                  const Expanded(
+                  Expanded(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end, // Spread evenly
                       crossAxisAlignment:
                           CrossAxisAlignment.center, // Align items center
                       children: [
-                        NavItem(title: 'Product', route: AppRoutes.product),
-                        SizedBox(width: 32), // Added space between items
-                        NavItem(title: 'Solution', route: AppRoutes.solution),
-                        SizedBox(width: 32),
-                        NavItem(title: 'News', route: AppRoutes.news),
-                        SizedBox(width: 32),
-                        NavItem(title: 'About Us', route: AppRoutes.aboutUs),
-                        SizedBox(width: 32),
-                        NavItem(title: 'Contact', route: AppRoutes.contact),
+                        // Product button with dropdown toggle
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _isProductDropdownVisible =
+                                  !_isProductDropdownVisible;
+                            });
+                          },
+                          child: Text(
+                            'Product',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context)
+                                  .primaryColor, // Updated color
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 32),
+                        const NavItem(
+                            title: 'Solution', route: AppRoutes.solution),
+                        const SizedBox(width: 32),
+                        const NavItem(title: 'News', route: AppRoutes.news),
+                        const SizedBox(width: 32),
+                        const NavItem(
+                            title: 'About Us', route: AppRoutes.aboutUs),
+                        const SizedBox(width: 32),
+                        const NavItem(
+                            title: 'Contact', route: AppRoutes.contact),
                       ],
                     ),
                   ),
                 ],
+              ),
+              // Dropdown list for SubProducts 1, 2, and 3
+              Visibility(
+                visible: _isProductDropdownVisible,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MouseRegion(
+                      onEnter: (_) => setState(() {
+                        _isHoveredSubProduct1 = true;
+                      }),
+                      onExit: (_) => setState(() {
+                        _isHoveredSubProduct1 = false;
+                      }),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, AppRoutes.subProduct1);
+                        },
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 8.0, horizontal: 16.0),
+                          decoration: BoxDecoration(
+                            color: _isHoveredSubProduct1
+                                ? Theme.of(context).primaryColor
+                                : Colors.transparent,
+                            borderRadius: BorderRadius.circular(4.0),
+                            boxShadow: _isHoveredSubProduct1
+                                ? [
+                                    const BoxShadow(
+                                        color: Colors.white, blurRadius: 4.0)
+                                  ]
+                                : [],
+                          ),
+                          child: Text(
+                            'AFC Equipment',
+                            style: TextStyle(
+                              color: _isHoveredSubProduct1
+                                  ? Colors.white
+                                  : Theme.of(context).primaryColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    MouseRegion(
+                      onEnter: (_) => setState(() {
+                        _isHoveredSubProduct2 = true;
+                      }),
+                      onExit: (_) => setState(() {
+                        _isHoveredSubProduct2 = false;
+                      }),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, AppRoutes.subProduct2);
+                        },
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 8.0, horizontal: 16.0),
+                          decoration: BoxDecoration(
+                            color: _isHoveredSubProduct2
+                                ? Theme.of(context).primaryColor
+                                : Colors.transparent,
+                            borderRadius: BorderRadius.circular(4.0),
+                            boxShadow: _isHoveredSubProduct2
+                                ? [
+                                    const BoxShadow(
+                                        color: Colors.white, blurRadius: 4.0)
+                                  ]
+                                : [],
+                          ),
+                          child: Text(
+                            'Embedded Computing',
+                            style: TextStyle(
+                              color: _isHoveredSubProduct2
+                                  ? Colors.white
+                                  : Theme.of(context).primaryColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    MouseRegion(
+                      onEnter: (_) => setState(() {
+                        _isHoveredSubProduct3 = true;
+                      }),
+                      onExit: (_) => setState(() {
+                        _isHoveredSubProduct3 = false;
+                      }),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, AppRoutes.subProduct3);
+                        },
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 8.0, horizontal: 16.0),
+                          decoration: BoxDecoration(
+                            color: _isHoveredSubProduct3
+                                ? Theme.of(context).primaryColor
+                                : Colors.transparent,
+                            borderRadius: BorderRadius.circular(4.0),
+                            boxShadow: _isHoveredSubProduct3
+                                ? [
+                                    const BoxShadow(
+                                        color: Colors.white, blurRadius: 4.0)
+                                  ]
+                                : [],
+                          ),
+                          child: Text(
+                            'SubProduct 3',
+                            style: TextStyle(
+                              color: _isHoveredSubProduct3
+                                  ? Colors.white
+                                  : Theme.of(context).primaryColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

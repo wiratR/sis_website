@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/contact_view.dart';
-import '../widgets/product_view.dart';
+import '../widgets/solution_view.dart';
 import '../widgets/component/header.dart';
 import '../widgets/component/footer.dart';
 
@@ -17,10 +17,10 @@ class HomeScreen extends StatelessWidget {
             // Header (Includes navigation bar)
             Header(),
 
-            // ProductView
+            // SolutionView
             Padding(
               padding: EdgeInsets.symmetric(vertical: 20.0),
-              child: ProductView(), // Display ProductView
+              child: SolutionView(), // Display ProductView
             ),
 
             // Divider (Optional, to separate sections visually)
