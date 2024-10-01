@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/component/header.dart';
 import '../../widgets/component/footer.dart';
 
+// Accessories
 class SubProduct3Screen extends StatelessWidget {
   const SubProduct3Screen({super.key});
 

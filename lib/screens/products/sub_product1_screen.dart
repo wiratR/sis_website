@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/component/header.dart';
 import '../../widgets/component/footer.dart';
 
+// AFC Equipments
 class SubProduct1Screen extends StatelessWidget {
   const SubProduct1Screen({super.key});
 

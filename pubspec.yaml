@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_image_slideshow: any
+  shared_preferences: ^2.0.0
   http: ^1.2.2
   ini: ^2.1.0
 

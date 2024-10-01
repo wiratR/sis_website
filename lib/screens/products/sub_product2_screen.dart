@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/component/header.dart';
 import '../../widgets/component/footer.dart';
 
+//Embedded Computing
 class SubProduct2Screen extends StatelessWidget {
   const SubProduct2Screen({super.key});
 

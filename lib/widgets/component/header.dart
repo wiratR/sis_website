@@ -230,7 +230,7 @@ class _HeaderState extends State<Header> {
                                 : [],
                           ),
                           child: Text(
-                            'SubProduct 3',
+                            'Accessories',
                             style: TextStyle(
                               color: _isHoveredSubProduct3
                                   ? Colors.white
