@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../screens/products/sub_product/details_screen.dart';
+// import '../../widgets/component/product_card_view.dart';
 import '../../widgets/component/header.dart';
 import '../../widgets/component/footer.dart';
 
@@ -128,10 +130,24 @@ class SubProduct2Screen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    // Handle tap on each item
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('${items[index]} tapped')),
-                    );
+                    // // Handle tap on each item
+                    // ScaffoldMessenger.of(context).showSnackBar(
+                    //   SnackBar(content: Text('${items[index]} tapped')),
+                    // );
+                    // Handle tap on "Motherboard" to navigate to MotherboardGrid screen
+                    if (title == 'Motherboard') {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DetailsScreen(),
+                        ),
+                      );
+                    } else {
+                      // For other categories, you can implement different navigation or action
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('${items[index]} tapped')),
+                      );
+                    }
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
