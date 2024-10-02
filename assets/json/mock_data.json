@@ -1,0 +1,130 @@
+[
+    {
+        "brand" : "GRG"
+    },
+    {
+        "brand"  : "Ibase",
+        "tittle" : "Motherboard" ,
+        "categorys" : [
+            {
+                "item": "Mini-ITX Motherboard",
+                "data" : [
+                    {
+                        "name" : "MI1002",
+                        "description": "Intel® Core™ Ultra Processors\nSeries 1 (Meteor Lake-PS Platform)\nMini-ITX Motherboard",
+                        "image_path" : "assets/images/products/Ibase/small/small_MI1002.png"
+                    },
+                    {
+                        "name": "MI1001",
+                        "description": "14th/13th/12th Gen Intel® Core™\nDT Processors (RPL-S Refresh)\nwith Intel® Q670E PCH..",
+                        "image_path": "assets/images/products/Ibase/small/small_MI1001.png"
+                    },
+                    {
+                        "name": "MI1000",
+                        "description": "14th/13th/12th Gen Intel® Core™\nDT Processors (RPL-S Refresh)\nwith Intel® R680E PCH..",
+                        "image_path": "assets/images/products/Ibase/small/small_MI1000.png"
+                    },
+                    {
+                        "name": "MI997",
+                        "description": "14th/13th/12th Gen Intel® Core™\nDT Processors (RPL-S Refresh)\nwith Intel® R680E PCH..",
+                        "image_path": "assets/images/products/Ibase/small/small_MI997.png"
+                    }
+                ]
+            },
+            {
+                "item": "ATX Motherboard",
+                "data" : []
+            },
+            {
+                "item": "Micro ATX Motherboard",
+                "data": []
+            }
+        ]
+    },
+    {
+        "brand" : "Ibase",
+        "tittle": "Single Board Computer",
+        "categorys": [
+            {
+                "item": "\"x86-based 3.5\" Single Board Computer",
+                "data" : []
+            },
+            {
+                "item": "\"x86-based 2.5\" Single Board Computer",
+                "data": []
+            },
+            {
+                "item": "\"ARM-based 3.5\" Single Board Computer",
+                "data": []
+            },
+            {
+                "item": "\"ARM-based 2.5\" Single Board Computer",
+                "data": []
+            }
+        ]
+    },
+    {
+        "brand": "Ibase",
+        "tittle": "CPU Module",
+        "categorys": [
+            {
+                "item": "COM Express",
+                "data": []
+            },
+            {
+                "item": "Qseven",
+                "data": []
+            },
+            {
+                "item": "ETX",
+                "data": []
+            }
+        ]
+    },
+    {
+        "brand": "Ibase",
+        "tittle": "CPU Card",
+        "categorys": [
+            {
+                "item": "Full-Size CPU Card",
+                "data": []
+            },
+            {
+                "item": "Backplane",
+                "data": []
+            }
+        ]
+    },
+    {
+        "brand": "Ibase",
+        "tittle": "Carrier Board",
+        "categorys": [
+            {
+                "item": "COM Express",
+                "data": []
+            },
+            {
+                "item": "Qseven",
+                "data": []
+            },
+            {
+                "item": "ETX",
+                "data": []
+            }
+        ]
+    },
+    {
+        "brand": "Ibase",
+        "tittle": "Accessories",
+        "categorys": [
+            {
+                "item": "Mini PCI-E Card",
+                "data": []
+            },
+            {
+                "item": "Embedded Function Card",
+                "data": []
+            }
+        ]
+    }
+]

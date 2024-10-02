@@ -1,94 +1,141 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import '../../screens/products/sub_product/details_screen.dart';
-// import '../../widgets/component/product_card_view.dart';
-import '../../widgets/component/header.dart';
+import '../../utils/utils.dart';
 import '../../widgets/component/footer.dart';
+import '../../widgets/component/header.dart';
 
-//Embedded Computing
-class SubProduct2Screen extends StatelessWidget {
+class SubProduct2Screen extends StatefulWidget {
   const SubProduct2Screen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
+  _SubProduct2ScreenState createState() => _SubProduct2ScreenState();
+}
+
+class _SubProduct2ScreenState extends State<SubProduct2Screen> {
+  final Logger logger = Logger();
+
+  List<List<String>> categoryItems = [];
+  List<String> titles = [];
+
+  bool isLoading = true;
+  String errorMessage = '';
+
+  @override
+  void initState() {
+    super.initState();
+    fetchJsonData();
+  }
+
+  Future<void> fetchJsonData() async {
+    try {
+      // Fetch categories for all brands
+      categoryItems = await getCategoriesForAllBrands(
+          'Ibase', 'assets/json/mock_data.json');
+      logger.i(
+          "Data fetched successfully: ${categoryItems.length} categories loaded.");
+    } catch (e) {
+      logger.e("Error loading categories: $e.");
+      setState(() {
+        isLoading = false;
+        errorMessage = 'Failed to load categories.';
+      });
+      return; // Exit if categories fail to load
+    }
+
+    try {
+      // Fetch titles for the specific brand "Ibase"
+      titles = await getTitlesByBrand('Ibase', 'assets/json/mock_data.json');
+      logger.i("Data fetched successfully: ${titles.length} titles loaded.");
+    } catch (e) {
+      logger.e("Error loading titles: $e.");
+      setState(() {
+        isLoading = false;
+        errorMessage = 'Failed to load titles.';
+      });
+      return; // Exit if titles fail to load
+    }
+
+    setState(() {
+      isLoading = false; // Data loaded successfully
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    if (errorMessage.isNotEmpty) {
+      return Scaffold(
+        body: Center(child: Text(errorMessage)),
+      );
+    }
+
     return Scaffold(
       body: Column(
-        mainAxisSize: MainAxisSize.min, // Ensure Column only takes needed space
+        mainAxisSize: MainAxisSize.min,
         children: [
           // Header
           const Header(),
 
-          // Main Content with padding on the left and right
+          // Main Content
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Title
-                  Text(
-                    'Embedded Computing',
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  // Subtitle
-                  const Text(
-                    '3.5" Single Board Computer, Mini-ITX, ATX, COM Express, ETX CPU Module & CPU Card',
-                    style: TextStyle(fontSize: 16, color: Colors.black54),
-                  ),
-                  const SizedBox(height: 10),
-                  // Categories
-                  Expanded(
-                    child: ClipRect(
-                      // ClipRect to prevent overflow
-                      child: GridView.builder(
-                        padding: EdgeInsets.zero, // Remove padding
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          crossAxisSpacing: 0.0, // No horizontal spacing
-                          mainAxisSpacing: 0.0, // No vertical spacing
-                          childAspectRatio: 2.5, // Width to height ratio
-                        ),
-                        itemCount: 6, // Number of categories
-                        itemBuilder: (context, index) {
-                          List<List<String>> categoryItems = [
-                            [
-                              'Mini-ITX Motherboard',
-                              'ATX Motherboard',
-                              'Micro ATX Motherboard'
-                            ],
-                            [
-                              'x86-based 3.5" Single Board Computer',
-                              'x86-based 2.5" Single Board Computer',
-                              'ARM-based 3.5" Single Board Computer',
-                              'ARM-based 2.5" Single Board Computer'
-                            ],
-                            ['COM Express', 'Qseven', 'ETX'],
-                            ['Full-Size CPU Card', 'Backplane'],
-                            ['COM Express', 'Qseven', 'ETX'],
-                            ['Mini PCI-E Card', 'Embedded Function Card'],
-                          ];
-                          List<String> titles = [
-                            'Motherboard',
-                            'Single Board Computer',
-                            'CPU Module',
-                            'CPU Card',
-                            'Carrier Board',
-                            'Accessories',
-                          ];
-
-                          return _buildCategory(
-                              context, titles[index], categoryItems[index]);
-                        },
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Title header
+                    Text(
+                      'Embedded Computing',
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
-                  ),
-                ],
-              ),
+                    const SizedBox(height: 8),
+                    // Subtitle
+                    const Text(
+                      '3.5" Single Board Computer, Mini-ITX, ATX, COM Express, ETX CPU Module & CPU Card',
+                      style: TextStyle(fontSize: 16, color: Colors.black54),
+                    ),
+                    const SizedBox(height: 10),
+                    // Categories Grid
+                    Expanded(
+                      child: ClipRect(
+                        // ClipRect to prevent overflow
+                        child: GridView.builder(
+                          padding: EdgeInsets.zero, // Remove padding
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            crossAxisSpacing: 0.0, // No horizontal spacing
+                            mainAxisSpacing: 0.0, // No vertical spacing
+                            childAspectRatio: 2.5, // Width to height ratio
+                          ),
+                          itemCount:
+                              titles.length, // Dynamic number of categories
+                          itemBuilder: (context, index) {
+                            // Ensure index is within bounds
+                            if (index < titles.length &&
+                                index < categoryItems.length) {
+                              return _buildCategory(
+                                  context, titles[index], categoryItems[index]);
+                            } else {
+                              return const SizedBox
+                                  .shrink(); // Return empty widget if index is out of bounds
+                            }
+                          },
+                        ),
+                      ),
+                    ),
+                  ]),
             ),
           ),
 
@@ -130,24 +177,16 @@ class SubProduct2Screen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    // // Handle tap on each item
-                    // ScaffoldMessenger.of(context).showSnackBar(
-                    //   SnackBar(content: Text('${items[index]} tapped')),
-                    // );
-                    // Handle tap on "Motherboard" to navigate to MotherboardGrid screen
-                    if (title == 'Motherboard') {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const DetailsScreen(),
-                        ),
-                      );
-                    } else {
-                      // For other categories, you can implement different navigation or action
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('${items[index]} tapped')),
-                      );
-                    }
+                    // Handle when tap to navigate to DetailsScreen
+                    logger.i(
+                        "select category Items : ${items[index]} and tittle : $title");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            DetailsScreen(title, items[index]),
+                      ),
+                    );
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(

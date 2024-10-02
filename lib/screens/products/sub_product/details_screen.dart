@@ -5,7 +5,10 @@ import '../../../widgets/component/footer.dart';
 
 // Accessories
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({super.key});
+  final String title;
+  final String categoryItem;
+
+  const DetailsScreen(this.title, this.categoryItem, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +22,7 @@ class DetailsScreen extends StatelessWidget {
           Expanded(
             child: Container(
               color: Colors.white,
-              child:
-                  SubProductView(), // Replace the placeholder text with ProductView
+              child: SubProductView(title, categoryItem),
             ),
           ),
 
