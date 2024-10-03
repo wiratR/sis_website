@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../widgets/component/cookie_consent_popup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../widgets/contact_view.dart';
 import '../widgets/solution_view.dart';
+import '../widgets/about_us_view.dart';
+import '../widgets/component/cookie_consent_popup.dart';
 import '../widgets/component/header.dart';
 import '../widgets/component/footer.dart';
 
@@ -80,6 +81,19 @@ class _HomeScreenState extends State<HomeScreen> {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 20.0),
               child: SolutionView(), // Display ProductView
+            ),
+
+            // Divider (Optional, to separate sections visually)
+            Divider(
+              color: Colors.grey,
+              height: 1,
+              thickness: 1,
+            ),
+
+            // SolutionView
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 20.0),
+              child: AboutUsView(), // Display ProductView
             ),
 
             // Divider (Optional, to separate sections visually)

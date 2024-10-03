@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/component/label_header.dart';
 import 'component/inquiry_form.dart';
 
 class ContactView extends StatelessWidget {
@@ -20,10 +21,17 @@ class ContactView extends StatelessWidget {
         final isMobile = screenWidth < 600;
 
         return SingleChildScrollView(
+          // Wrap with SingleChildScrollView
+          padding: const EdgeInsets.all(10.0),
           child: Column(
             children: [
-              const SizedBox(height: 20),
-
+              // Add LabelHeader here
+              const LabelHeader(
+                imageUrl:
+                    'assets/images/label/contract.jpg', // Update with your asset path
+                text: 'Contact Us', // Use the widget title
+              ),
+              const SizedBox(height: 10),
               // Company Information
               const SizedBox(
                 width: 480,

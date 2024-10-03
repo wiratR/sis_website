@@ -76,14 +76,15 @@ class _SolutionViewState extends State<SolutionView> {
     }
 
     return SingleChildScrollView(
-      // Wrap Column in SingleChildScrollView
+      // Wrap with SingleChildScrollView
+      padding: const EdgeInsets.all(10.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Add LabelHeader here
           const LabelHeader(
             imageUrl:
-                'assets/images/label/embedded-computing.jpg', // Update with your asset path
+                'assets/images/label/solution.jpg', // Update with your asset path
             text: 'Solution', // Use the widget title
           ),
           const SizedBox(height: 10),

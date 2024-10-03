@@ -4,6 +4,7 @@ import '../../screens/products/sub_product/details_screen.dart';
 import '../../utils/utils.dart';
 import '../../widgets/component/footer.dart';
 import '../../widgets/component/header.dart';
+import '../../widgets/component/label_header.dart';
 
 class SubProduct2Screen extends StatefulWidget {
   const SubProduct2Screen({super.key});
@@ -82,24 +83,30 @@ class _SubProduct2ScreenState extends State<SubProduct2Screen> {
         children: [
           // Header
           const Header(),
-
           // Main Content
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Title header
-                    Text(
-                      'Embedded Computing',
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).primaryColor,
-                      ),
+                    const SizedBox(height: 10),
+                    // Add LabelHeader here
+                    const LabelHeader(
+                      imageUrl:
+                          'assets/images/label/embedded.jpg', // Update with your asset path
+                      text: 'Embedded Computing', // Use the widget title
                     ),
-                    const SizedBox(height: 8),
+                    // // Title header
+                    // Text(
+                    //   'Embedded Computing',
+                    //   style: TextStyle(
+                    //     fontSize: 28,
+                    //     fontWeight: FontWeight.bold,
+                    //     color: Theme.of(context).primaryColor,
+                    //   ),
+                    // ),
+                    const SizedBox(height: 10),
                     // Subtitle
                     const Text(
                       '3.5" Single Board Computer, Mini-ITX, ATX, COM Express, ETX CPU Module & CPU Card',

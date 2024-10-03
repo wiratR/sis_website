@@ -9,19 +9,28 @@ class CookieConsentPopup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final primaryColor = Theme.of(context).primaryColor;
+
     return Container(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         mainAxisSize: MainAxisSize.min, // Wrap the content tightly
         children: [
-          const Text(
+          Text(
             'Cookie Consent',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: primaryColor), // Use primaryColor for the text
           ),
           const SizedBox(height: 10),
-          const Text(
+          Text(
             'We use cookies to improve your experience. Do you accept?',
             textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
+                color: primaryColor), // Use primaryColor for the text
           ),
           const SizedBox(height: 20),
           Row(
@@ -32,6 +41,9 @@ class CookieConsentPopup extends StatelessWidget {
                   onDecline();
                   Navigator.of(context).pop(); // Close the bottom sheet
                 },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white70, // Decline button in grey
+                ),
                 child: const Text('No'),
               ),
               ElevatedButton(
@@ -39,6 +51,9 @@ class CookieConsentPopup extends StatelessWidget {
                   onAccept();
                   Navigator.of(context).pop(); // Close the bottom sheet
                 },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white70, // Decline button in grey
+                ),
                 child: const Text('Yes'),
               ),
             ],

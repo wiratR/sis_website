@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../widgets/component/label_header.dart';
 
-class NewView extends StatelessWidget {
-  const NewView({super.key});
+class AfcEquipmentView extends StatelessWidget {
+  const AfcEquipmentView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +21,8 @@ class NewView extends StatelessWidget {
           // Add LabelHeader here
           const LabelHeader(
             imageUrl:
-                'assets/images/label/new.jpg', // Update with your asset path
-            text: 'News And Activity', // Use the widget title
+                'assets/images/label/afc.jpg', // Update with your asset path
+            text: 'AFC Equipment', // Use the widget title
           ),
           const SizedBox(height: 10),
           ListView.builder(

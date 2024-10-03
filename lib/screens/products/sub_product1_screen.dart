@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../widgets/afc_equipment_view.dart';
 import '../../widgets/component/header.dart';
 import '../../widgets/component/footer.dart';
 
@@ -8,24 +9,19 @@ class SubProduct1Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Column(
         children: [
           // Header (Includes navigation bar)
-          const Header(),
+          Header(),
 
-          // Main content (Empty for now)
+          // Main content (About Us View)
           Expanded(
-            child: Container(
-              color: Colors.white,
-              child: const Center(
-                child: Text('Sub Product1 Screen'),
-              ),
-            ),
+            child: AfcEquipmentView(), // Integrate the AboutUsView here
           ),
 
           // Footer
-          const Footer(),
+          Footer(),
         ],
       ),
     );

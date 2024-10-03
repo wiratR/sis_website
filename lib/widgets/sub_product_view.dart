@@ -164,7 +164,7 @@ class _SubProductViewState extends State<SubProductView> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(10.0),
       child: Column(
         children: [
           // Add LabelHeader here
