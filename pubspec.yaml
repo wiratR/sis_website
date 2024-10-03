@@ -27,5 +27,13 @@ flutter:
     - assets/images/sis_logo.jpg
     - assets/images/sis_map.jpg
     - assets/cfg/env.ini
-    - assets/images/products/Ibase/small/
+    - assets/images/products/Ibase/Motherboard/small/
+    - assets/images/products/Ibase/Motherboard/
+    - assets/images/products/Ibase/MicroATXMotherboard/small/
+    - assets/images/products/Ibase/MicroATXMotherboard/
+    - assets/images/products/Ibase/ATXMotherboard/small/
+    - assets/images/products/Ibase/ATXMotherboard/
+    - assets/images/products/Ibase/SingleBoardComputer/small/
+    - assets/images/products/Ibase/SingleBoardComputer/
     - assets/json/mock_data.json
+    - assets/images/label/

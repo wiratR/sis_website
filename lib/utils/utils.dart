@@ -11,7 +11,7 @@ Future<List<dynamic>> readJson(String path) async {
 }
 
 Future<List<ProductDetail>> readProductDetailsJsonByParameter(
-    String path, String brand, String title, String categoryItem) async {
+    String path, String brand, String title, String? categoryItem) async {
   try {
     // Load the JSON file
     String jsonString = await rootBundle.loadString(path);
@@ -30,8 +30,8 @@ Future<List<ProductDetail>> readProductDetailsJsonByParameter(
         // Check if 'categorys' exists
         if (product.containsKey('categorys')) {
           for (var category in product['categorys']) {
-            // Check if the category matches the category item
-            if (category['item'] == categoryItem) {
+            // Check if categoryItem is null (i.e., "ALL") or matches the category item
+            if (categoryItem == null || category['item'] == categoryItem) {
               // Add all product details from 'data' in the matching category
               for (var item in category['data']) {
                 productDetails.add(ProductDetail.fromJson(item));
@@ -76,6 +76,34 @@ Future<List<List<String>>> getCategoriesForAllBrands(
     }
 
     return allCategories;
+  } catch (error) {
+    throw Exception('Failed to load and parse JSON: $error');
+  }
+}
+
+Future<List<String>> getCategoriesByTitleAndBrands(
+    String jsonPath, String brand, String title) async {
+  try {
+    String jsonString = await rootBundle.loadString(jsonPath);
+    List<dynamic> jsonData = json.decode(jsonString);
+
+    Set<String> allCategories = {}; // Use a Set to avoid duplicates
+
+    // Iterate over the products
+    for (var product in jsonData) {
+      // Filter by brand and title
+      if (product['brand'] == brand && product['tittle'] == title) {
+        // Check if 'categorys' exists and is a list
+        if (product['categorys'] != null && product['categorys'] is List) {
+          for (var category in product['categorys']) {
+            String item = category['item'] ?? 'Unknown Category';
+            allCategories.add(item); // Add the category 'item' to the set
+          }
+        }
+      }
+    }
+
+    return allCategories.toList(); // Convert Set back to List
   } catch (error) {
     throw Exception('Failed to load and parse JSON: $error');
   }

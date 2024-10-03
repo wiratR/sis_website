@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert'; // For base64 decoding
 import 'dart:async';
+import '../widgets/component/label_header.dart';
 import '../services/get_image.dart'; // Import the getImage function
 
 class SolutionView extends StatefulWidget {
@@ -79,7 +80,13 @@ class _SolutionViewState extends State<SolutionView> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 16),
+          // Add LabelHeader here
+          const LabelHeader(
+            imageUrl:
+                'assets/images/label/embedded-computing.jpg', // Update with your asset path
+            text: 'Solution', // Use the widget title
+          ),
+          const SizedBox(height: 10),
 
           // Wrap PageView with a Container and ensure it has a height
           SizedBox(
