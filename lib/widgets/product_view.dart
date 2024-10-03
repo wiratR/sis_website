@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'dart:convert'; // For base64 decoding
 import 'dart:async';
-import '../services/get_image.dart'; // Import the getImageProduct function
-import '../models/product_image.dart'; // Import the ProductImage model
-import '../widgets/component/card_view.dart'; // Import the CardView widget
+import '../widgets/component/label_header.dart';
+import '../services/get_image.dart'; // Import the getImage function
 
 class ProductView extends StatefulWidget {
   const ProductView({super.key});
@@ -15,36 +15,39 @@ class ProductView extends StatefulWidget {
 class _ProductViewState extends State<ProductView> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
-  List<ProductImage> _products = [];
+  List<Image> _images = [];
   bool _loading = true;
   String? _errorMessage;
 
   @override
   void initState() {
     super.initState();
-    _initFetchProducts(); // Fetch product data on init
+    _initFetchImages(); // Fetch images on init
   }
 
-  void _initFetchProducts() {
-    _fetchProducts();
+  void _initFetchImages() {
+    _fetchImages();
   }
 
-  Future<void> _fetchProducts() async {
+  Future<void> _fetchImages() async {
     try {
-      List<ProductImage> products = [];
+      List<Image> images = [];
       for (int i = 1; i <= 3; i++) {
-        // Fetch the ProductImage object
-        ProductImage productImage = await getImageProduct(i);
-        products.add(productImage);
+        String imageBase64 = await getImageProductView(i);
+        if (imageBase64.isNotEmpty) {
+          images.add(Image.memory(base64Decode(imageBase64)));
+        } else {
+          throw Exception('Image $i is empty');
+        }
       }
       setState(() {
-        _products = products;
+        _images = images;
         _loading = false;
       });
     } catch (e) {
       setState(() {
         _loading = false;
-        _errorMessage = 'Failed to load products: $e';
+        _errorMessage = 'Failed to load images: $e';
       });
     }
   }
@@ -73,12 +76,22 @@ class _ProductViewState extends State<ProductView> {
     }
 
     return SingleChildScrollView(
+      // Wrap with SingleChildScrollView
+      padding: const EdgeInsets.all(10.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 16),
+          // Add LabelHeader here
+          const LabelHeader(
+            imageUrl:
+                'assets/images/label/product.jpg', // Update with your asset path
+            text: 'Product', // Use the widget title
+          ),
+          const SizedBox(height: 10),
+
+          // Wrap PageView with a Container and ensure it has a height
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.5,
+            height: 400, // Set a specific height
             child: Stack(
               alignment: Alignment.bottomCenter,
               children: [
@@ -89,29 +102,16 @@ class _ProductViewState extends State<ProductView> {
                       _currentPage = index;
                     });
                   },
-                  itemCount: _products.length,
+                  itemCount: _images.length,
                   itemBuilder: (context, index) {
-                    ProductImage product = _products[index];
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 8),
-                        CardView(
-                          title: product.brand,
-                          description: 'No description available',
-                          icon: Icons.request_quote_rounded,
-                          imageData: product
-                              .imageData, // Pass base64 image data to CardView
-                        ),
-                      ],
-                    );
+                    return _images[index]; // Display the decoded base64 image
                   },
                 ),
                 Positioned(
                   bottom: 10,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(_products.length, (index) {
+                    children: List.generate(_images.length, (index) {
                       return AnimatedContainer(
                         duration: const Duration(milliseconds: 300),
                         margin: const EdgeInsets.symmetric(horizontal: 4),
